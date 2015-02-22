@@ -7,18 +7,18 @@ date: 2/20/2015
 Executive summary
 ========================================================
 
-This presentation illustrates a simple application to summarize the solar
-insolation of a specific location in the US. It is using the TMY3 databased published by NREL (http://rredc.nrel.gov/solar/old_data/nsrdb/1991-2005/tmy3/)
+This presentation illustrates a simple application to predict the solar energy productionn of a specific location in the US. It is using the TMY3 databased published by NREL (http://rredc.nrel.gov/solar/old_data/nsrdb/1991-2005/tmy3/)
 
 - select of a given city 
 - load the specific data from this city
 - compute summaries related to the horizontal insolation
 - estimate solar energy based on a given solar panel system size.
 
-Application published on RStudio server: 
+Application published on RStudio server: https://mfinot.shinyapps.io/Data_Products/
 
 Selection of the city
 ========================================================
+<small>
 load the list of cities for selection
 ```{r}
 TMYlocationfile <- "http://rredc.nrel.gov/solar/old_data/nsrdb/1991-2005/tmy3/TMY3_StationsMeta.csv"
@@ -26,10 +26,10 @@ location_table <- read.csv(TMYlocationfile, header=TRUE)
 location_table$location <- paste(location_table$State,location_table$Site.Name)
 head(location_table$location)
 ```
-
+</small>
 Selection of a city 
 ========================================================
-
+<small>
 ```{r}
 location_USAF <- 699604
 #  location_USAF <- location
@@ -40,14 +40,15 @@ daily_sun <- tapply(0.001 * table$GHI..W.m.2., table$Date..MM.DD.YYYY., sum)
 summary(daily_sun)
 ```
 
+</small>
 daily sun  and  energy production
 ========================================================
-
-```{r}
-
+<small>
+```{r, echo=FALSE}
 hist(daily_sun, xlab='daily insolation (kW/m2)', col='lightblue',main="city: YUMA")
 size = 5.0 # in kW 
 annual_production <- sum(daily_sun)
-print(paste("annual production (MWh):", 0.001*annual_production))
+print(paste("annual production (MWh):", 0.001*size*annual_production))
 
 ```
+</small>

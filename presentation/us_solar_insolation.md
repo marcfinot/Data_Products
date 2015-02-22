@@ -7,18 +7,18 @@ date: 2/20/2015
 Executive summary
 ========================================================
 
-This presentation illustrates a simple application to summarize the solar
-insolation of a specific location in the US. It is using the TMY3 databased published by NREL (http://rredc.nrel.gov/solar/old_data/nsrdb/1991-2005/tmy3/)
+This presentation illustrates a simple application to predict the solar energy productionn of a specific location in the US. It is using the TMY3 databased published by NREL (http://rredc.nrel.gov/solar/old_data/nsrdb/1991-2005/tmy3/)
 
 - select of a given city 
 - load the specific data from this city
 - compute summaries related to the horizontal insolation
 - estimate solar energy based on a given solar panel system size.
 
-Application published on RStudio server: 
+Application published on RStudio server: https://mfinot.shinyapps.io/Data_Products/
 
 Selection of the city
 ========================================================
+<small>
 load the list of cities for selection
 
 ```r
@@ -36,10 +36,10 @@ head(location_table$location)
 [5] "AK SELAWIK"                                
 [6] "AK BARROW W POST-W ROGERS ARPT [NSA - ARM]"
 ```
-
+</small>
 Selection of a city 
 ========================================================
-
+<small>
 
 ```r
 location_USAF <- 699604
@@ -56,22 +56,13 @@ summary(daily_sun)
   0.610   3.998   5.643   5.395   6.856   8.587 
 ```
 
+</small>
 daily sun  and  energy production
 ========================================================
-
-
-```r
-hist(daily_sun, xlab='daily insolation (kW/m2)', col='lightblue',main="city: YUMA")
-```
-
+<small>
 ![plot of chunk unnamed-chunk-3](us_solar_insolation-figure/unnamed-chunk-3-1.png) 
 
-```r
-size = 5.0 # in kW 
-annual_production <- sum(daily_sun)
-print(paste("annual production (MWh):", 0.001*annual_production))
 ```
-
+[1] "annual production (MWh): 9.845295"
 ```
-[1] "annual production (MWh): 1.969059"
-```
+</small>
