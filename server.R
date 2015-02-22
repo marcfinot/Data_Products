@@ -18,8 +18,9 @@ shinyServer(
   function(input, output) {
     output$inputValue <- renderPrint({input$locationID})
     output$prediction <- renderPrint({summary(solarRadiation(input$locationID))})
+    output$production <- renderPrint({0.001 *input$size * sum(solarRadiation(input$locationID))})
     output$newHist <- renderPlot({
-      hist(solarRadiation(input$locationID), xlab='daily radiation (kW/m2)', col='lightblue',main=input$location)
+      hist(solarRadiation(input$locationID), xlab='daily horiz. insolation (kW/m2)', col='lightblue',main=input$location)
     })
   }
 )

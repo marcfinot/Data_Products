@@ -10,3 +10,5 @@ The example is the calculation of the solar insolation at different location in 
 the application asked for the selection of a city in the US.
 The application reads the corresponding TMY files from the NREL website, provides statistics and distribution of the daily number of hours of suns over a tycipal year.
 
+
+The user can define the size of a system and the application will predict the annual energy production.
